@@ -1,0 +1,30 @@
+{
+  "name": "chest",
+  "description": "displays chests obtained by a summoner in the current season",
+  "options": [{
+      "name": "summoner",
+      "description": "summoner name",
+      "type": 3,
+      "required": true
+    },
+    {
+      "name": "region",
+      "description": "server region",
+      "type": 3,
+      "required": false,
+      "choices": [{
+          "name": "NA",
+          "value": "na"
+        },
+        {
+          "name": "EUW",
+          "value": "euw"
+        },
+        {
+          "name": "KR",
+          "value": "kr"
+        }
+      ]
+    }
+  ]
+}

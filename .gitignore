@@ -1,0 +1,8 @@
+ignore/
+download/
+pkg/
+.env
+test.rb
+testhelper.rb
+testcommand.rb
+testcommand.json
