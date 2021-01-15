@@ -9,7 +9,7 @@ League of Legends chest tracker for Discord.
 ChestBot follows the syntax of Discord slash commands. More information about slash commands can be found in the [Discord API](https://discord.com/developers/docs/interactions/slash-commands).
 
 **/chest** - Displays the chests obtained for a summoner
-* ex: ```/chest summoner: Levin region: NA```
+* ex: ```/chest summoner: lIlIIllIlII region: NA```
 
 ## Preview
 ![Image](./assets/readme_00.png)
