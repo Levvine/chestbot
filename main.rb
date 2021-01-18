@@ -14,4 +14,6 @@ at_exit do
   chestBot.stop
 end
 
-chestBot.run false
+chestBot.run true
+
+$stdin.gets
