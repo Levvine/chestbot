@@ -2,7 +2,8 @@ require 'dotenv'
 Dotenv.load('../.env')
 require 'discordrb'
 require 'Lol'
-require 'json'
+#require 'net/http'
+#require 'json'
 require 'active_support'
 require 'active_support/core_ext/numeric/time'
 

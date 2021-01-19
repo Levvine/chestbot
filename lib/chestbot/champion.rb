@@ -9,6 +9,12 @@ module ChestBot
   # champion data.
   class Champion
 
+    @@list = []
+    
+    def self.filename
+      return 'champion.json'
+    end
+
     # @deprecated Currently using a hardcoded json file, will be moved to
     # auto updater in the future
     def self.getLatestVersion
