@@ -1,3 +1,5 @@
+require 'dotenv'
+Dotenv.load('../.env')
 require_relative 'lib/chestbot'
 
 
