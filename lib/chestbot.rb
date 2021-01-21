@@ -2,6 +2,7 @@ require 'dotenv'
 Dotenv.load('../.env')
 require 'discordrb'
 require 'Lol'
+require 'open-uri'
 #require 'net/http'
 #require 'json'
 require 'active_support'

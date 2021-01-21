@@ -9,58 +9,48 @@ module ChestBot
   # champion data.
   class Champion
 
-    @@list = []
-    
-    def self.filename
-      return 'champion.json'
+    @@ids
+    @@filename = 'champion.json'
+
+    def self.ids
+      @@ids
     end
 
-    # @deprecated Currently using a hardcoded json file, will be moved to
-    # auto updater in the future
-    def self.getLatestVersion
-      request = "https://ddragon.leagueoflegends.com/api/versions.json"
-      uri = URI(request)
-      version = JSON.parse(Net::HTTP.get(uri))[0]
+    def self.filename
+      @@filename
     end
 
     # Parses championids.json
+    # Called by patcher to reload the file after updating
     # @return [Hash] parsed
-    def self.parseChampIdJson(fileName)
-      if !File.exist?(fileName)
-        champIdsFile = File.new(fileName,"w")
-        version = self.getLatestVersion
-        request = "https://ddragon.leagueoflegends.com/cdn/#{version}/data/en_US/champion.json"
-        uri = URI(request)
-        json = Net::HTTP.get(uri)
-        response = JSON.parse(json)["data"]
+    def self.reload
+      file = File.read(@@filename)
+      json = JSON.parse(file)
+      @@id = parse_ids(json['data'])
+    end
 
-        champIdHash = Hash.new
-        response.each do |c|
-          champIdHash[c[0]] = c[1]["key"].to_i
-          puts c[1]["key"].to_i
-        end
-        champIdsFile.write(champIdHash.to_json)
-        champIdHash
-      else
-        json = File.read(fileName)
-        champIdHash = JSON.parse(json)
+    def self.parse_ids(champions)
+      hash = {}
+      champions.each do |c|
+        hash[c[1]['name']] = c[1]['key'].to_i
       end
+      # sorting hash is unnecessary because it's an internal data structure
+      # hash = hash.sort.to_h
+      return hash
     end
 
     # Converts a champion name to its id
     # @param [String] the champion's name
     # @return [Integer] returns champion id
     def self.getChampId(name)
-      champIdHash = self.parseChampIdJson("champIds.json")
-      champIdHash[name]
+      return @@id[name]
     end
 
     # Converts a champion id to its name
     # @param [Integer] the champion's id
     # @return [String] Given a champion id, return the champions name
     def self.getChampName(id)
-      champIdHash = self.parseChampIdJson("champIds.json")
-      champIdHash.key(id)
+      return @@id.key(id)
     end
 
   end
