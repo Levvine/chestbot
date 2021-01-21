@@ -9,14 +9,16 @@ module ChestBot
     def initialize(botToken, riotKey)
       @discordBot = Discordrb::Bot.new token: botToken, log_mode: :debug, fancy_log: true
       @lolClient = Lol::Client.new riotKey, region: 'na'
+      @patcher = ChestBot::Patcher.new
 
-      # declare_message_command
+      #declare_message_command
       declare_chest_command
     end
 
     # see Discordrb::Bot#run
     def run (background = false)
       @discordBot.run background
+      @patcher.run_async
     end
 
     # see Discordrb::Bot#stop
