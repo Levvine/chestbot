@@ -39,7 +39,6 @@ module ChestBot
         clazz = Object.const_get(d['class'])
         clazz.reload
       end
-      Discordrb::LOGGER.debug("Data Dragon Patcher running on version #{@current_version}")
       return @manifest
     end
 
@@ -94,6 +93,7 @@ module ChestBot
     def run_async
       @thread = Thread.new do
         Thread.current[:discordrb_name] = 'patcher'
+        Discordrb::LOGGER.debug("Data Dragon Patcher running on version #{@current_version}")
 
         # Calculates delay before initial patch
         # if current time has passed patch time, find the next occurrence
